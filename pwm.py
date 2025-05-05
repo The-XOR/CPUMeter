@@ -21,13 +21,11 @@ min_pwm = 6144  # corrisponde, secondo certosina misurazione a spanne, a 0 RPM
 max_pwm = 63488 # sempre rigorosamente a spanne, fondo scala RPM
 last_received = time.time() # timeout comunicazione
 
-def set_pwm(duty):
-    global pwm, retro
+def set_pwm(duty):    
     retro.value(0 if duty < min_pwm else 1)
     pwm.duty_u16(65535-duty)
 
-def getvalue():
-    global poller
+def getvalue():    
     buf = bytearray(1)
     if poller.poll(50):          
         if sys.stdin.readinto(buf):
