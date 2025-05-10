@@ -1,0 +1,2 @@
+Assorbimento retroilluminazione gauge: 36mA
+ib transistor retroilluminazione = 6mA
