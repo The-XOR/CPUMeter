@@ -26,12 +26,16 @@ def set_pwm(duty):
     retro.value(0 if duty < min_pwm else 1)
     if duty < min_pwm:
         duty = min_pwm
+    print("duty",duty)
+    print("rtr", retro.value())
     pwm.duty_u16(duty)
 
-def getvalue():    
+def getvalue():
+    global last_received
     buf = bytearray(1)
     if poller.poll(50):          
         if sys.stdin.readinto(buf):
+            last_received = time.time()
             if 0 <= buf[0] <= 100:
                 return buf[0]     # 0–255 integer
     return None
@@ -46,7 +50,6 @@ try:
             print("Carico CPU =", cpu_load)            
             cpu_load = int(cpu_load * (max_pwm-min_pwm) / 100) + min_pwm            
             set_pwm(cpu_load)
-            last_received = time.time()
 
         if time.time() - last_received > 10: # almeno 1 dato ogni 10 secondi, altrimenti spegni (doll combing)
             set_pwm(0)

@@ -16,7 +16,13 @@ Preliminari (sempre importanti):
   di uscita a 11.2V
 
 - Software:
-  Caricare il micropitone sull'RP2040 quindi copiare il file pwm.py
+  Caricare il micropitone.uf2 sull'RP2040 
+  Se non gia' installato, installare l'utility rshell con:
+  python3 -m pip install rshell
+  
+  Copiare il file main.py sul rp2040:
+  rshell -p /dev/ttyACM0 --buffer-size 512 cp main.py /pyboard/main.py
+
 
 - Uso:
   Una volta avviato il software del microcontrollore, questo aspetta un byte (valori da 0 a 100) corrispondente
