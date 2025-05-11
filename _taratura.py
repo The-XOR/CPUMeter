@@ -19,8 +19,8 @@ pwm.freq(150000) # 150 kilocicli, mica na pezza a fiori!
 # 0 = 0% on-time, 65535 = 100% on-time
 # Esempio:50% duty = pwm.duty_u16(32768)
 
-min_pwm=20000
-max_pwm = 61000
+min_pwm=20500
+max_pwm = 59500
 
 cur_pwm=min_pwm
 step_pwm=1000

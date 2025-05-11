@@ -13,8 +13,8 @@ poller.register(sys.stdin, uselect.POLLIN)
 pwm.freq(150000) # 150 kHz (basteranno? famo de si....)
 
 # i valori trovati con "Taratura"
-min_pwm=20000
-max_pwm = 61000
+min_pwm=20500
+max_pwm = 59500
 
 # Breve spiegazione der Duty cycle:
 # On RP2040 with MicroPython, duty is a 16-bit value: 0–65535
@@ -22,8 +22,8 @@ max_pwm = 61000
 # Esempio:50% duty = pwm.duty_u16(32768)
 
 def set_pwm(duty):
-    global pwm
-    pwm.duty_u16(65535-duty)
+    print("duty",duty)
+    pwm.duty_u16(duty)
 
 def set_load(duty):
     cpu_load = int(duty * (max_pwm-min_pwm) / 100) + min_pwm
@@ -61,3 +61,4 @@ finally:
     set_load(0)
     pwm.deinit()    
     print("Fine.")
+

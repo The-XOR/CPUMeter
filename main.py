@@ -18,15 +18,15 @@ poller = uselect.poll()
 poller.register(sys.stdin, uselect.POLLIN)
 pwm.freq(150000) # 150 kilocicli, mica na pezza a fiori!
 # i valori trovati con "Taratura"
-min_pwm=20000
-max_pwm = 61000
+min_pwm=20500
+max_pwm = 59500
 last_received = time.time() # timeout comunicazione
 
 def set_pwm(duty):
     retro.value(0 if duty < min_pwm else 1)
     if duty < min_pwm:
         duty = min_pwm
-    pwm.duty_u16(65535-duty)
+    pwm.duty_u16(duty)
 
 def getvalue():    
     buf = bytearray(1)
